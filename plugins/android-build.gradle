@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.bundles.defaultLibs)
     implementation(libs.bundles.navigationLibs)
     implementation(libs.serialization.json)
+    implementation(libs.timber)
     implementation platform(libs.androidx.compose.bom)
 
     // Tests

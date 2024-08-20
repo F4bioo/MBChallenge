@@ -17,8 +17,6 @@ android {
         applicationId = Config.APPLICATION_ID
         versionCode = Config.VERSION_CODE
         versionName = Config.VERSION_NAME
-
-        multiDexEnabled = true
     }
     signingConfigs {
         if (keystorePropertiesFile.exists()) {
@@ -75,6 +73,8 @@ android {
 dependencies {
     // Modules
     implementation(project(Modules.arch))
+
+    // Libs
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
