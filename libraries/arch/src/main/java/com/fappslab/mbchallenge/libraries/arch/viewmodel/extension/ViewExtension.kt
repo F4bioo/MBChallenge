@@ -3,13 +3,10 @@ package com.fappslab.mbchallenge.libraries.arch.viewmodel.extension
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 @Composable
 inline fun <reified T> Flow<T>.observeAsEvents(
