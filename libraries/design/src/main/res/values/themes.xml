@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PlutoTheme" parent="Theme.SplashScreen">
+        <item name="postSplashScreenTheme">@style/Theme.MBChallenge</item>
+        <item name="windowSplashScreenBackground">@color/bg_splash_screen</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_round</item>
+    </style>
+
+    <style name="Theme.MBChallenge" parent="android:Theme.Material.Light.NoActionBar" />
+    <!--<style name="Theme.MBChallenge" parent="Theme.AppCompat.DayNight.NoActionBar" />-->
+</resources>

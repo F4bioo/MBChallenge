@@ -29,7 +29,8 @@ include(":app")
 
 // Libraries
 include(
-    ":libraries:arch"
+    ":libraries:arch",
+    ":libraries:design",
 )
 
 // -=-= keep in alphabetical order =-=-

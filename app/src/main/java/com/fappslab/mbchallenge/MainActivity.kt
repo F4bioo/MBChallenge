@@ -11,14 +11,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.fappslab.mbchallenge.ui.theme.MBChallengeTheme
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.fappslab.mbchallenge.libraries.design.theme.PlutoTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         enableEdgeToEdge()
         setContent {
-            MBChallengeTheme {
+            PlutoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",
@@ -41,7 +43,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    MBChallengeTheme {
+    PlutoTheme {
         Greeting("Android")
     }
 }
