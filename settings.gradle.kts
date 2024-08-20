@@ -27,6 +27,11 @@ rootProject.name = "MBChallenge"
 // App
 include(":app")
 
+// Core
+include(
+    ":core:navigation",
+)
+
 // Libraries
 include(
     ":libraries:arch",

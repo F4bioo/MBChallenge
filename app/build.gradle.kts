@@ -74,6 +74,7 @@ dependencies {
     // Modules
     implementation(project(Modules.arch))
     implementation(project(Modules.design))
+    implementation(project(Modules.navigation))
 
     // Libs
     implementation(libs.core.splashscreen)
