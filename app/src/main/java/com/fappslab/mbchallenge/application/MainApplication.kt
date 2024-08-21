@@ -23,10 +23,5 @@ open class MainApplication : Application() {
 
     private fun startKoin() {
         startKoin(KoinDeclaration.get(this))
-        koinLoad()
-    }
-
-    private fun koinLoad() {
-
     }
 }

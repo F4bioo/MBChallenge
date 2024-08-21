@@ -81,4 +81,10 @@ dependencies {
 
     // Libs
     implementation(libs.core.splashscreen)
+
+    debugImplementation(libs.flipper)
+    debugImplementation(libs.soloader)
+    debugImplementation(libs.flipper.leakcanary2.plugin)
+    debugImplementation(libs.leakcanary.android)
+    debugImplementation(libs.flipper.network.plugin)
 }
