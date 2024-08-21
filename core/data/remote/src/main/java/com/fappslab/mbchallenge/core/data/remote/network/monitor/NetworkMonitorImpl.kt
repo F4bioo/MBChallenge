@@ -6,7 +6,6 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import com.fappslab.mbchallenge.core.domain.model.NetworkStateType
-import com.fappslab.myais.core.data.remote.network.monitor.NetworkMonitor
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -1,4 +1,4 @@
-package com.fappslab.myais.debugtools
+package com.fappslab.mbchallenge.debugtools
 
 import android.content.Context
 import com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin.SharedPreferencesDescriptor

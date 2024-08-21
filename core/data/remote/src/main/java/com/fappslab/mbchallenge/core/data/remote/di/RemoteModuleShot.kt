@@ -7,11 +7,11 @@ import com.fappslab.mbchallenge.core.data.remote.BuildConfig
 import com.fappslab.mbchallenge.core.data.remote.api.CoinAPIService
 import com.fappslab.mbchallenge.core.data.remote.network.HttpClient
 import com.fappslab.mbchallenge.core.data.remote.network.HttpClientImpl
+import com.fappslab.mbchallenge.core.data.remote.network.monitor.NetworkMonitor
 import com.fappslab.mbchallenge.core.data.remote.network.monitor.NetworkMonitorImpl
 import com.fappslab.mbchallenge.core.data.remote.network.retrofit.RetrofitClient
 import com.fappslab.mbchallenge.core.data.remote.source.RemoteDataSourceImpl
 import com.fappslab.mbchallenge.libraries.arch.koin.koinshot.KoinShot
-import com.fappslab.myais.core.data.remote.network.monitor.NetworkMonitor
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -33,20 +33,20 @@ internal class RemoteModuleShot : KoinShot() {
         single<HttpClient>(named(COIN_API_HTTP_CLIENT_QUALIFIER)) {
             HttpClientImpl(retrofit = get(named(COIN_API_RETROFIT_QUALIFIER)))
         }
+        single<NetworkMonitor> {
+            NetworkMonitorImpl(
+                connectivityManager = get<Context>().getSystemService(
+                    Context.CONNECTIVITY_SERVICE
+                ) as ConnectivityManager
+            )
+        }
 
         factory<RemoteDataSource> {
             RemoteDataSourceImpl(
                 service = get<HttpClient>(
                     named(COIN_API_HTTP_CLIENT_QUALIFIER)
                 ).create(CoinAPIService::class.java),
-            )
-        }
-
-        single<NetworkMonitor> {
-            NetworkMonitorImpl(
-                connectivityManager = get<Context>().getSystemService(
-                    Context.CONNECTIVITY_SERVICE
-                ) as ConnectivityManager
+                networkMonitor = get<NetworkMonitor>()
             )
         }
     }

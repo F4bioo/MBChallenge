@@ -1,4 +1,4 @@
-package com.fappslab.myais.core.data.remote.network.monitor
+package com.fappslab.mbchallenge.core.data.remote.network.monitor
 
 import com.fappslab.mbchallenge.core.domain.model.NetworkStateType
 import kotlinx.coroutines.flow.Flow
