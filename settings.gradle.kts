@@ -35,6 +35,11 @@ include(
     ":core:navigation",
 )
 
+// Features
+include(
+    ":features:exchanges",
+)
+
 // Libraries
 include(
     ":libraries:arch",

@@ -78,6 +78,7 @@ dependencies {
     implementation(project(Modules.remote))
     implementation(project(Modules.coordinator))
     implementation(project(Modules.domain))
+    implementation(project(Modules.exchanges))
 
     // Libs
     implementation(libs.core.splashscreen)

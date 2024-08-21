@@ -7,6 +7,9 @@ object Modules {
     const val domain = ":core:domain"
     const val navigation = ":core:navigation"
 
+    // Features
+    const val exchanges = ":features:exchanges"
+
     // Libraries
     const val arch = ":libraries:arch"
     const val design = ":libraries:design"
