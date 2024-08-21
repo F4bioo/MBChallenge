@@ -29,6 +29,9 @@ include(":app")
 
 // Core
 include(
+    ":core:data:coordinator",
+    ":core:data:remote",
+    ":core:domain",
     ":core:navigation",
 )
 
