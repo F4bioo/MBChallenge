@@ -14,4 +14,7 @@ dependencies {
     implementation(project(Modules.domain))
 
     // Libs
+
+    // TestLibs
+    testImplementation(testFixtures(project(Modules.testing)))
 }

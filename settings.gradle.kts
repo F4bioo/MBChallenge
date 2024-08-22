@@ -44,6 +44,7 @@ include(
 include(
     ":libraries:arch",
     ":libraries:design",
+    ":libraries:testing",
 )
 
 // -=-= keep in alphabetical order =-=-
