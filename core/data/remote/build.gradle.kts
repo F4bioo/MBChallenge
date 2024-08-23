@@ -48,6 +48,7 @@ dependencies {
     implementation(project(Modules.arch))
     implementation(project(Modules.coordinator))
     implementation(project(Modules.domain))
+    implementation(project(Modules.design))
 
     // Libs
     api(libs.retrofit)

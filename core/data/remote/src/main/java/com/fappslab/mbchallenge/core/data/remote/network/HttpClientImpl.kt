@@ -2,7 +2,7 @@ package com.fappslab.mbchallenge.core.data.remote.network
 
 import retrofit2.Retrofit
 
-internal class HttpClientImpl(
+class HttpClientImpl(
     private val retrofit: Retrofit
 ) : HttpClient {
 
