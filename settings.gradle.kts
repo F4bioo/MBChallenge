@@ -37,6 +37,7 @@ include(
 
 // Features
 include(
+    ":features:details",
     ":features:exchanges",
 )
 

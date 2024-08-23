@@ -80,6 +80,7 @@ dependencies {
     implementation(project(Modules.domain))
     implementation(project(Modules.exchanges))
     implementation(project(Modules.testing))
+    implementation(project(Modules.details))
 
     // Libs
     implementation(libs.core.splashscreen)

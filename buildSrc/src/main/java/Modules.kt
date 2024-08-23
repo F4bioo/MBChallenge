@@ -8,6 +8,7 @@ object Modules {
     const val navigation = ":core:navigation"
 
     // Features
+    const val details = ":features:details"
     const val exchanges = ":features:exchanges"
 
     // Libraries
