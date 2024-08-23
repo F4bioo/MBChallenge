@@ -19,5 +19,6 @@ dependencies {
     // Libs
     implementation(libs.androidx.ui.text.google.fonts)
     implementation (libs.core.splashscreen)
-    implementation(libs.coil.compose)
+    api(libs.coil.compose)
+    api(libs.lottie.compose)
 }
