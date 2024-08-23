@@ -1,4 +1,4 @@
-package com.fappslab.mbchallenge.core.data.remote.model
+package com.fappslab.mbchallenge.features.exchanges.data.model
 
 
 import com.google.gson.annotations.SerializedName

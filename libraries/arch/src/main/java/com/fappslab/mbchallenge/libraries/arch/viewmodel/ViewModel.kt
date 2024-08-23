@@ -20,7 +20,7 @@ abstract class ViewModel<State, Effect>(initialState: State) : LifecycleViewMode
     val viewState: State
         get() = state.value
 
-    protected fun onState(stateBlock: (State) -> State) {
+    protected fun onState(stateBlock: State.() -> State) {
         _state.update { stateBlock(it) }
     }
 

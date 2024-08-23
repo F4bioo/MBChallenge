@@ -1,7 +1,7 @@
-package com.fappslab.mbchallenge.core.data.remote.api
+package com.fappslab.mbchallenge.features.exchanges.data.api
 
-import com.fappslab.mbchallenge.core.data.remote.model.ExchangeResponse
-import com.fappslab.mbchallenge.core.data.remote.model.IconResponse
+import com.fappslab.mbchallenge.features.exchanges.data.model.ExchangeResponse
+import com.fappslab.mbchallenge.features.exchanges.data.model.IconResponse
 import retrofit2.http.GET
 
 internal interface CoinAPIService {
