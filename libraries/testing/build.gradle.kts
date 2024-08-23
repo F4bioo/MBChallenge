@@ -43,4 +43,12 @@ dependencies {
     testFixturesImplementation(libs.kotlinx.coroutines.test.jvm)
     testFixturesImplementation(libs.kotlinx.coroutines.core)
     testFixturesImplementation(libs.core.testing)
+    testFixturesImplementation(libs.mockwebserver)
+    testFixturesImplementation(libs.retrofit)
+    testFixturesImplementation(libs.converter.gson)
+    testFixturesImplementation(libs.gson)
+    testFixturesImplementation(libs.okhttp)
+    testFixturesImplementation(libs.logging.interceptor)
+    testFixturesImplementation(libs.annotation)
+    testFixturesImplementation(project(Modules.arch))
 }
