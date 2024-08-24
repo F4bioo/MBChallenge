@@ -21,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
@@ -61,7 +62,7 @@ internal fun DetailsContent(
                 Header(exchange = exchange)
                 Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp16))
                 Text(
-                    text = "USD Volume",
+                    text = stringResource(R.string.usd_volume),
                     style = PlutoTheme.typography.bodyLarge.copy(
                         fontWeight = FontWeight.Bold
                     ),
