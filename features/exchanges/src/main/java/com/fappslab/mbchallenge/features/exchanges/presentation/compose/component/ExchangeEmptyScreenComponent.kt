@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,6 +21,9 @@ import com.airbnb.lottie.compose.LottieCompositionSpec.RawRes
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.fappslab.mbchallenge.features.exchanges.R
+import com.fappslab.mbchallenge.features.exchanges.presentation.compose.EMPTY_SCREE_DESCRIPTION_TEST_TAG
+import com.fappslab.mbchallenge.features.exchanges.presentation.compose.EMPTY_SCREE_ILLU_TEST_TAG
+import com.fappslab.mbchallenge.features.exchanges.presentation.compose.EMPTY_SCREE_TRY_AGAIN_TEST_TAG
 import com.fappslab.mbchallenge.libraries.design.components.button.ButtonType
 import com.fappslab.mbchallenge.libraries.design.components.button.PlutoButtonComponent
 import com.fappslab.mbchallenge.libraries.design.theme.PlutoTheme
@@ -42,12 +46,15 @@ internal fun ExchangeEmptyScreenComponent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             LottieAnimation(
-                modifier = Modifier.size(PlutoTheme.dimen.dp200),
+                modifier = Modifier
+                    .testTag(EMPTY_SCREE_ILLU_TEST_TAG)
+                    .size(PlutoTheme.dimen.dp200),
                 iterations = LottieConstants.IterateForever,
                 composition = composition
             )
             Text(
                 modifier = Modifier
+                    .testTag(EMPTY_SCREE_DESCRIPTION_TEST_TAG)
                     .padding(horizontal = PlutoTheme.dimen.dp32)
                     .offset(y = -PlutoTheme.dimen.dp24),
                 text = stringResource(R.string.exchange_empty_screen),
@@ -57,6 +64,7 @@ internal fun ExchangeEmptyScreenComponent(
             )
             Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp48))
             PlutoButtonComponent(
+                modifier = Modifier.testTag(EMPTY_SCREE_TRY_AGAIN_TEST_TAG),
                 text = stringResource(R.string.common_try_again),
                 buttonType = ButtonType.Tertiary,
                 onClick = onTryAgainClicked

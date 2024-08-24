@@ -127,6 +127,7 @@ paging-common = { group = "androidx.paging", name = "paging-common", version.ref
 paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
 paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "paging" }
 core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "uiTestJunit4" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

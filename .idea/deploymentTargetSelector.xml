@@ -5,7 +5,10 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="All Tests">
+      <SelectionState runConfigName="when_DetailsScreen_is_loaded_Then_should_display_go_back_button()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="when_DetailsScreen_is_loaded_Then_should_display_website_button()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

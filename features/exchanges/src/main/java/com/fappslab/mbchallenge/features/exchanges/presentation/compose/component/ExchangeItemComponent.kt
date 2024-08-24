@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,6 +27,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.fappslab.mbchallenge.core.domain.model.Exchange
 import com.fappslab.mbchallenge.features.exchanges.R
+import com.fappslab.mbchallenge.features.exchanges.presentation.compose.EXCHANGES_ITEM_TEST_TAG
 import com.fappslab.mbchallenge.libraries.design.extension.clickable
 import com.fappslab.mbchallenge.libraries.design.theme.PlutoTheme
 
@@ -37,7 +39,9 @@ internal fun ExchangeItemComponent(
 ) {
 
     Card(
-        modifier = Modifier.clickable { itemClicked(exchange) },
+        modifier = Modifier
+            .testTag("${EXCHANGES_ITEM_TEST_TAG}_${exchange.exchangeId}")
+            .clickable { itemClicked(exchange) },
         shape = RoundedCornerShape(PlutoTheme.radius.medium),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,

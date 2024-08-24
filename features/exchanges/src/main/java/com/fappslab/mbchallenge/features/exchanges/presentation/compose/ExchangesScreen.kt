@@ -12,6 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import com.fappslab.mbchallenge.core.navigation.DetailsNavigation
 import com.fappslab.mbchallenge.core.navigation.DetailsRoute
 import com.fappslab.mbchallenge.features.exchanges.di.ExchangesModuleLoad
@@ -25,11 +26,20 @@ import com.fappslab.mbchallenge.libraries.design.theme.PlutoTheme
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 
+internal const val TOP_BAR_TEST_TAG = "TOP_BAR_TEST_TAG"
+internal const val LOADING_INDICATOR_TEST_TAG = "LOADING_INDICATOR_TEST_TAG"
+internal const val EMPTY_SCREE_DESCRIPTION_TEST_TAG = "EMPTY_SCREE_DESCRIPTION_TEST_TAG"
+internal const val EMPTY_SCREE_ILLU_TEST_TAG = "EMPTY_SCREE_ILLU_TEST_TAG"
+internal const val EMPTY_SCREE_TRY_AGAIN_TEST_TAG = "EMPTY_SCREE_TRY_AGAIN_TEST_TAG"
+internal const val EXCHANGES_ITEM_TEST_TAG = "EXCHANGES_ITEM_TEST_TAG"
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ExchangesScreen() {
+internal fun ExchangesScreen(
+    viewModel: ExchangesViewModel = koinViewModel()
+) {
     KoinLazyModuleInitializer(ExchangesModuleLoad)
-    val viewModel: ExchangesViewModel = koinViewModel()
     val state by viewModel.state.collectAsState()
     ExchangesObserve(viewModel)
 
@@ -40,7 +50,9 @@ internal fun ExchangesScreen() {
                 verticalAlignment = Alignment.Bottom
             ) {
                 TopAppBar(
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier
+                        .testTag(TOP_BAR_TEST_TAG)
+                        .weight(1f),
                     title = {
                         Text(
                             text = "Exchanges",
@@ -49,7 +61,9 @@ internal fun ExchangesScreen() {
                     }
                 )
                 ExchangeCircularLoadingIndicator(
-                    modifier = Modifier.padding(end = PlutoTheme.dimen.dp16),
+                    modifier = Modifier
+                        .testTag(LOADING_INDICATOR_TEST_TAG)
+                        .padding(end = PlutoTheme.dimen.dp16),
                     shouldShow = state.shouldShowLoading
                 )
             }

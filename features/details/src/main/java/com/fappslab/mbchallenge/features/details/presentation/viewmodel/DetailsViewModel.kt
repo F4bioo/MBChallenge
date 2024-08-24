@@ -22,11 +22,8 @@ internal class DetailsViewModel(
 
     private fun handleSelectExchange() {
         viewModelScope.launch {
-            onState { copy(shouldShowLoading = true) }
-                .runCatching { selectExchangeUseCase(viewState.exchangeId) }
-                .onFailure { }
-                .onSuccess { onState { copy(shouldShowLoading = false, exchange = it) } }
-                .apply { onState { copy(shouldShowLoading = false) } }
+            runCatching { selectExchangeUseCase(viewState.exchangeId) }
+                .onSuccess { onState { copy(exchange = it) } }
         }
     }
 
