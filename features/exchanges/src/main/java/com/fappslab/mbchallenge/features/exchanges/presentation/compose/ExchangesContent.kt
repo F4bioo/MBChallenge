@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -16,13 +17,12 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.fappslab.mbchallenge.core.data.remote.model.ErrorType
+import com.fappslab.mbchallenge.core.domain.model.Exchange
 import com.fappslab.mbchallenge.features.exchanges.R
-import com.fappslab.mbchallenge.features.exchanges.domain.model.Exchange
 import com.fappslab.mbchallenge.features.exchanges.presentation.compose.component.ExchangeEmptyScreenComponent
 import com.fappslab.mbchallenge.features.exchanges.presentation.compose.component.ExchangeItemComponent
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewIntent
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewState
-import com.fappslab.mbchallenge.libraries.design.components.loading.PlutoLoadingDialog
 import com.fappslab.mbchallenge.libraries.design.components.modal.PlutoModalComponent
 import com.fappslab.mbchallenge.libraries.design.theme.PlutoTheme
 
@@ -33,6 +33,9 @@ internal fun ExchangesContent(
     intent: (ExchangesViewIntent) -> Unit,
 ) {
 
+    LaunchedEffect(Unit) {
+        intent(ExchangesViewIntent.OnGetExchanges)
+    }
     Box(
         modifier = modifier.fillMaxSize()
     ) {
@@ -50,10 +53,6 @@ internal fun ExchangesContent(
                 )
             }
         }
-        PlutoLoadingDialog(
-            shouldShowDialog = state.shouldShowLoading,
-            shouldShowLabel = true
-        )
         ExchangeEmptyScreenComponent(
             shouldShowEmptyScreen = state.exchanges.isEmpty(),
             onTryAgainClicked = { intent(ExchangesViewIntent.OnGetExchanges) }
@@ -63,9 +62,6 @@ internal fun ExchangesContent(
             errorType = state.errorType,
             intent = intent
         )
-    }
-    LaunchedEffect(Unit) {
-        intent(ExchangesViewIntent.OnGetExchanges)
     }
 }
 
@@ -105,6 +101,7 @@ private fun ErrorModal(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 private fun ExchangesContentPreview() {

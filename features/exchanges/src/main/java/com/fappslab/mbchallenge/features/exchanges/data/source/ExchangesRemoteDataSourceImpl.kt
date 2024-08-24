@@ -1,9 +1,9 @@
 package com.fappslab.mbchallenge.features.exchanges.data.source
 
 import com.fappslab.mbchallenge.core.data.remote.network.exception.extension.parseHttpError
+import com.fappslab.mbchallenge.core.domain.model.Exchange
 import com.fappslab.mbchallenge.features.exchanges.data.api.CoinAPIService
 import com.fappslab.mbchallenge.features.exchanges.data.model.extension.toExchangeList
-import com.fappslab.mbchallenge.features.exchanges.domain.model.Exchange
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

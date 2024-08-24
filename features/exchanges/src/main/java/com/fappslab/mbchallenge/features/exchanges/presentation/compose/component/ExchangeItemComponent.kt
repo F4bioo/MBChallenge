@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
-import com.fappslab.mbchallenge.features.exchanges.domain.model.Exchange
+import com.fappslab.mbchallenge.core.domain.model.Exchange
 import com.fappslab.mbchallenge.libraries.design.extension.clickable
 import com.fappslab.mbchallenge.libraries.design.theme.PlutoTheme
 import com.fappslab.mbchallenge.libraries.design.theme.tokens.lightBlue

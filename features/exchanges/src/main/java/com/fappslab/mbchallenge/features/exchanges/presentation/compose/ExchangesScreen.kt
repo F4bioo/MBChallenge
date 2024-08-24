@@ -1,5 +1,6 @@
 package com.fappslab.mbchallenge.features.exchanges.presentation.compose
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -9,8 +10,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.fappslab.mbchallenge.features.exchanges.di.ExchangesModuleLoad
+import com.fappslab.mbchallenge.features.exchanges.presentation.compose.component.ExchangeCircularLoadingIndicator
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewEffect
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewModel
 import com.fappslab.mbchallenge.libraries.arch.koin.koinlazy.KoinLazyModuleInitializer
@@ -29,15 +32,24 @@ internal fun ExchangesScreen() {
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                title = {
-                    Text(
-                        text = "Exchanges",
-                        style = PlutoTheme.typography.titleLarge,
-                    )
-                }
-            )
+                verticalAlignment = Alignment.Bottom
+            ) {
+                TopAppBar(
+                    modifier = Modifier.weight(1f),
+                    title = {
+                        Text(
+                            text = "Exchanges",
+                            style = PlutoTheme.typography.titleLarge,
+                        )
+                    }
+                )
+                ExchangeCircularLoadingIndicator(
+                    modifier = Modifier.padding(end = PlutoTheme.dimen.dp16),
+                    shouldShow = state.shouldShowLoading
+                )
+            }
         },
         content = {
             ExchangesContent(

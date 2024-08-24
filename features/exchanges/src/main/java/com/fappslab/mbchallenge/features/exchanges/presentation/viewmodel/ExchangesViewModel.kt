@@ -3,13 +3,17 @@ package com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.fappslab.mbchallenge.core.data.remote.model.ErrorType
 import com.fappslab.mbchallenge.core.data.remote.network.exception.model.HttpThrowable
-import com.fappslab.mbchallenge.features.exchanges.domain.usecase.GetExchangesUseCases
+import com.fappslab.mbchallenge.core.domain.usecase.InsertAllExchangesUseCase
+import com.fappslab.mbchallenge.core.domain.usecase.SelectAllExchangesUseCase
+import com.fappslab.mbchallenge.features.exchanges.domain.usecase.GetExchangesUseCase
 import com.fappslab.mbchallenge.libraries.arch.viewmodel.ViewIntent
 import com.fappslab.mbchallenge.libraries.arch.viewmodel.ViewModel
 import kotlinx.coroutines.launch
 
 internal class ExchangesViewModel(
-    private val getExchangesUseCases: GetExchangesUseCases
+    private val insertAllExchangesUseCase: InsertAllExchangesUseCase,
+    private val selectAllExchangesUseCase: SelectAllExchangesUseCase,
+    private val getExchangesUseCase: GetExchangesUseCase
 ) : ViewModel<ExchangesViewState, ExchangesViewEffect>(ExchangesViewState()),
     ViewIntent<ExchangesViewIntent> {
 
@@ -24,9 +28,13 @@ internal class ExchangesViewModel(
     private fun handleGetExchanges() {
         viewModelScope.launch {
             onState { copy(shouldShowLoading = true, shouldShowError = false) }
-                .runCatching { getExchangesUseCases() }
-                .onFailure { getExchangesFailure(cause = it) }
-                .onSuccess { onState { copy(exchanges = it) } }
+                .runCatching {
+                    val localExchanges = selectAllExchangesUseCase()
+                    onState { copy(exchanges = localExchanges) }
+                    val remoteExchanges = getExchangesUseCase()
+                    onState { copy(exchanges = remoteExchanges) }
+                    insertAllExchangesUseCase(remoteExchanges)
+                }.getOrElse { getExchangesFailure(cause = it) }
                 .apply { onState { copy(shouldShowLoading = false) } }
         }
     }

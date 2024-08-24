@@ -1,12 +1,8 @@
 package com.fappslab.mbchallenge.core.data.remote.di
 
-import android.content.Context
-import android.net.ConnectivityManager
 import com.fappslab.mbchallenge.core.data.remote.BuildConfig
 import com.fappslab.mbchallenge.core.data.remote.network.HttpClient
 import com.fappslab.mbchallenge.core.data.remote.network.HttpClientImpl
-import com.fappslab.mbchallenge.core.data.remote.network.monitor.NetworkMonitor
-import com.fappslab.mbchallenge.core.data.remote.network.monitor.NetworkMonitorImpl
 import com.fappslab.mbchallenge.core.data.remote.network.retrofit.RetrofitClient
 import com.fappslab.mbchallenge.libraries.arch.koin.koinshot.KoinShot
 import org.koin.core.module.Module
@@ -29,13 +25,6 @@ internal class RemoteModuleShot : KoinShot() {
         }
         single<HttpClient>(named(COIN_API_HTTP_CLIENT_QUALIFIER)) {
             HttpClientImpl(retrofit = get(named(COIN_API_RETROFIT_QUALIFIER)))
-        }
-        single<NetworkMonitor> {
-            NetworkMonitorImpl(
-                connectivityManager = get<Context>().getSystemService(
-                    Context.CONNECTIVITY_SERVICE
-                ) as ConnectivityManager
-            )
         }
     }
 }

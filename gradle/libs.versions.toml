@@ -50,6 +50,7 @@ baselineprofile = "1.2.4"
 secretsGradlePlugin = "2.0.1"
 paging = "3.3.2"
 mockwebserver = "4.9.0"
+coreKtxVersion = "1.6.1"
 
 [libraries]
 # Default
@@ -124,6 +125,7 @@ paging-compose = { group = "androidx.paging", name = "paging-compose", version.r
 paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "paging" }
 paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
 paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "paging" }
+core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -32,6 +32,8 @@ dependencies {
     testImplementation(libs.core.testing)
 
     // Test Fixtures dependencies
+    testFixturesImplementation(libs.core.ktx)
+    testFixturesImplementation(libs.room.runtime)
     testFixturesImplementation(libs.bundles.defaultTestLibs)
     testFixturesImplementation(libs.koin.test.junit4)
     testFixturesImplementation(libs.koin.test)
@@ -50,5 +52,6 @@ dependencies {
     testFixturesImplementation(libs.okhttp)
     testFixturesImplementation(libs.logging.interceptor)
     testFixturesImplementation(libs.annotation)
+    testFixturesImplementation(project(Modules.domain))
     testFixturesImplementation(project(Modules.arch))
 }

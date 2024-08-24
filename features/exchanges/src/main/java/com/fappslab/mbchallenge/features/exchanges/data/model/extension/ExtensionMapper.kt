@@ -1,8 +1,8 @@
 package com.fappslab.mbchallenge.features.exchanges.data.model.extension
 
+import com.fappslab.mbchallenge.core.domain.model.Exchange
 import com.fappslab.mbchallenge.features.exchanges.data.model.ExchangeResponse
 import com.fappslab.mbchallenge.features.exchanges.data.model.IconResponse
-import com.fappslab.mbchallenge.features.exchanges.domain.model.Exchange
 import com.fappslab.mbchallenge.libraries.arch.extension.orZero
 import java.util.Locale
 

@@ -4,12 +4,16 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.fappslab.mbchallenge.core.data.remote.model.ErrorType
 import com.fappslab.mbchallenge.core.data.remote.network.exception.model.HttpThrowable
-import com.fappslab.mbchallenge.features.exchanges.domain.usecase.GetExchangesUseCases
-import com.fappslab.mbchallenge.features.exchanges.stub.exchangeStub
+import com.fappslab.mbchallenge.core.domain.usecase.InsertAllExchangesUseCase
+import com.fappslab.mbchallenge.core.domain.usecase.SelectAllExchangesUseCase
+import com.fappslab.mbchallenge.features.exchanges.domain.usecase.GetExchangesUseCase
 import com.fappslab.mbchallenge.libraries.testing.rules.MainCoroutineTestRule
+import com.fappslab.mbchallenge.libraries.testing.stub.exchangesStub
+import io.mockk.Runs
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -27,13 +31,17 @@ internal class ExchangesViewModelTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     private val initialState = ExchangesViewState()
-    private val getExchangesUseCases = mockk<GetExchangesUseCases>(relaxed = true)
+    private val insertAllExchangesUseCase = mockk<InsertAllExchangesUseCase>(relaxed = true)
+    private val selectAllExchangesUseCase = mockk<SelectAllExchangesUseCase>(relaxed = true)
+    private val getExchangesUseCase = mockk<GetExchangesUseCase>(relaxed = true)
     private lateinit var subject: ExchangesViewModel
 
     @Before
     fun setUp() {
         subject = ExchangesViewModel(
-            getExchangesUseCases = getExchangesUseCases
+            insertAllExchangesUseCase = insertAllExchangesUseCase,
+            selectAllExchangesUseCase = selectAllExchangesUseCase,
+            getExchangesUseCase = getExchangesUseCase,
         )
     }
 
@@ -76,14 +84,14 @@ internal class ExchangesViewModelTest {
         }
 
     @Test
-    fun `When onViewIntent is invoked with NavigateToDetails Then should expose expected success state`() =
+    fun `When onViewIntent is invoked with OnGetExchanges Then should expose expected success state`() =
         runTest {
             // Given
-            val exchanges = listOf(exchangeStub())
+            val exchanges = exchangesStub()
             val expectedFirstState = initialState.copy(shouldShowLoading = true)
             val expectedSecondState = expectedFirstState.copy(exchanges = exchanges)
             val expectedFinalState = expectedSecondState.copy(shouldShowLoading = false)
-            coEvery { getExchangesUseCases() } returns exchanges
+            coEvery { getExchangesUseCase() } returns exchanges
 
             // When
             subject.onViewIntent(ExchangesViewIntent.OnGetExchanges)
@@ -96,7 +104,7 @@ internal class ExchangesViewModelTest {
                 assertEquals(expectedFinalState, awaitItem())
                 cancelAndConsumeRemainingEvents()
             }
-            coVerify { getExchangesUseCases() }
+            coVerify { getExchangesUseCase() }
         }
 
     @Test
@@ -129,11 +137,15 @@ internal class ExchangesViewModelTest {
 
     private suspend fun commonErrorScenarios(errorType: ErrorType) {
         // Given
+        val exchanges = exchangesStub()
         val expectedFirstState = initialState.copy(shouldShowLoading = true)
-        val expectedSecondState = expectedFirstState
+        val expectedSecondState = expectedFirstState.copy(exchanges = exchanges)
+        val expectedThirdState = expectedSecondState
             .copy(errorType = errorType, shouldShowError = true)
-        val expectedFinalState = expectedSecondState.copy(shouldShowLoading = false)
-        coEvery { getExchangesUseCases() } throws HttpThrowable(errorType)
+        val expectedFinalState = expectedThirdState.copy(shouldShowLoading = false)
+        coEvery { insertAllExchangesUseCase(exchanges) } just Runs
+        coEvery { selectAllExchangesUseCase() } returns exchanges
+        coEvery { getExchangesUseCase() } throws HttpThrowable(errorType)
 
         // When
         subject.onViewIntent(ExchangesViewIntent.OnGetExchanges)
@@ -143,9 +155,10 @@ internal class ExchangesViewModelTest {
             assertEquals(initialState, awaitItem())
             assertEquals(expectedFirstState, awaitItem())
             assertEquals(expectedSecondState, awaitItem())
+            assertEquals(expectedThirdState, awaitItem())
             assertEquals(expectedFinalState, awaitItem())
             cancelAndConsumeRemainingEvents()
         }
-        coVerify { getExchangesUseCases() }
+        coVerify { getExchangesUseCase() }
     }
 }

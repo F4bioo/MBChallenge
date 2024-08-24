@@ -18,6 +18,7 @@ dependencies {
     implementation(project(Modules.arch))
     implementation(project(Modules.domain))
     implementation(project(Modules.remote))
+    implementation(project(Modules.local))
     implementation(project(Modules.navigation))
     implementation(project(Modules.design))
 

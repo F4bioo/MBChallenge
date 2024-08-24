@@ -76,7 +76,7 @@ dependencies {
     implementation(project(Modules.design))
     implementation(project(Modules.navigation))
     implementation(project(Modules.remote))
-    implementation(project(Modules.coordinator))
+    implementation(project(Modules.local))
     implementation(project(Modules.domain))
     implementation(project(Modules.exchanges))
     implementation(project(Modules.testing))
