@@ -6,11 +6,18 @@ import com.fappslab.mbchallenge.core.domain.model.Exchange
 internal fun ExchangeEntity.toExchange(): Exchange {
     return Exchange(
         exchangeId = exchangeId,
+        website = website,
         name = name,
+        dataQuoteStart = dataQuoteStart,
+        dataQuoteEnd = dataQuoteEnd,
+        dataOrderBookStart = dataOrderBookStart,
+        dataOrderBookEnd = dataOrderBookEnd,
+        dataTradeStart = dataTradeStart,
+        dataTradeEnd = dataTradeEnd,
+        dataSymbolsCount = dataSymbolsCount,
         volume1hrsUsd = volume1hrsUsd,
         volume1dayUsd = volume1dayUsd,
         volume1mthUsd = volume1mthUsd,
-        website = website,
         iconUrl = iconUrl
     )
 }
@@ -18,11 +25,18 @@ internal fun ExchangeEntity.toExchange(): Exchange {
 internal fun Exchange.toExchangeEntity(): ExchangeEntity {
     return ExchangeEntity(
         exchangeId = exchangeId,
+        website = website,
         name = name,
+        dataQuoteStart = dataQuoteStart,
+        dataQuoteEnd = dataQuoteEnd,
+        dataOrderBookStart = dataOrderBookStart,
+        dataOrderBookEnd = dataOrderBookEnd,
+        dataTradeStart = dataTradeStart,
+        dataTradeEnd = dataTradeEnd,
+        dataSymbolsCount = dataSymbolsCount,
         volume1hrsUsd = volume1hrsUsd,
         volume1dayUsd = volume1dayUsd,
         volume1mthUsd = volume1mthUsd,
-        website = website,
         iconUrl = iconUrl
     )
 }

@@ -12,6 +12,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.fappslab.mbchallenge.core.navigation.DetailsNavigation
+import com.fappslab.mbchallenge.core.navigation.DetailsRoute
 import com.fappslab.mbchallenge.features.exchanges.di.ExchangesModuleLoad
 import com.fappslab.mbchallenge.features.exchanges.presentation.compose.component.ExchangeCircularLoadingIndicator
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewEffect
@@ -21,6 +23,7 @@ import com.fappslab.mbchallenge.libraries.arch.navigation.extension.LocalNavCont
 import com.fappslab.mbchallenge.libraries.arch.viewmodel.extension.observeAsEvents
 import com.fappslab.mbchallenge.libraries.design.theme.PlutoTheme
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -64,12 +67,16 @@ internal fun ExchangesScreen() {
 @Composable
 private fun ExchangesObserve(
     viewModel: ExchangesViewModel,
+    detailsNavigation: DetailsNavigation = koinInject()
 ) {
     val navController = LocalNavController.current
 
     viewModel.effect.observeAsEvents { effect ->
         when (effect) {
-            is ExchangesViewEffect.NavigateToDetails -> {}
+            is ExchangesViewEffect.NavigateToDetails -> {
+                val route = DetailsRoute(effect.exchangeId)
+                detailsNavigation.navigateToFeature(navController, route)
+            }
         }
     }
 }

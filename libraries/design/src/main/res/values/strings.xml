@@ -8,6 +8,7 @@
     <string name="common_confirm">Confirm</string>
     <string name="common_continue">Continue</string>
     <string name="common_cancel">Cancel</string>
+    <string name="common_go_back">Go back</string>
     <string name="common_ok">OK</string>
     <string name="common_wait">Wait…</string>
 

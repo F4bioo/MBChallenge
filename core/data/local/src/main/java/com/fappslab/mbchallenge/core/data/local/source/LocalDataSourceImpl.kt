@@ -15,7 +15,9 @@ internal class LocalDataSourceImpl(
 ) : LocalDataSource {
 
     override suspend fun selectExchange(exchangeId: String): Exchange {
-        return dao.selectExchange(exchangeId).toExchange()
+        return withContext(dispatcher) {
+            dao.selectExchange(exchangeId).toExchange()
+        }
     }
 
     override suspend fun insertAllExchanges(exchanges: List<Exchange>) {

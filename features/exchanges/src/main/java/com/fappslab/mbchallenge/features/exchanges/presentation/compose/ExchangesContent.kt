@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -47,7 +46,6 @@ internal fun ExchangesContent(
         ) {
             items(state.exchanges) { exchange ->
                 ExchangeItemComponent(
-                    modifier = Modifier.padding(PlutoTheme.dimen.dp8),
                     exchange = exchange,
                     itemClicked = { intent(ExchangesViewIntent.OnExchangeClicked(it.exchangeId)) }
                 )
@@ -101,17 +99,23 @@ private fun ErrorModal(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 private fun ExchangesContentPreview() {
     val exchange = Exchange(
         exchangeId = "BINANCE",
+        website = "https://www.binance.com/",
         name = "Binance",
+        dataQuoteStart = "18/12/17 00:00",
+        dataQuoteEnd = "20/08/24 00:00",
+        dataOrderBookStart = "18/12/17 21:50",
+        dataOrderBookEnd = "07/07/23 00:00",
+        dataTradeStart = "14/07/17 00:00",
+        dataTradeEnd = "21/08/24 00:00",
+        dataSymbolsCount = "2731",
         volume1hrsUsd = "246,0M",
         volume1dayUsd = "6,1B",
         volume1mthUsd = "333,8B",
-        website = "https://www.binance.com/",
         iconUrl = "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_64/74eaad903814407ebdfc3828fe5318ba.png"
     )
     val state = ExchangesViewState(
