@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 apply("$rootDir/plugins/android-build.gradle")
 
@@ -10,6 +11,9 @@ android {
     @Suppress("UnstableApiUsage")
     testFixtures {
         enable = true
+    }
+    buildFeatures {
+        compose = true
     }
 }
 
@@ -30,6 +34,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test.jvm)
     testImplementation(libs.kotlinx.coroutines.core)
     testImplementation(libs.core.testing)
+    testImplementation(libs.ui.test.junit4)
 
     // Test Fixtures dependencies
     testFixturesImplementation(libs.core.ktx)
