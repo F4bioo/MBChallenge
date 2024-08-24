@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,16 +15,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.fappslab.mbchallenge.core.domain.model.Exchange
+import com.fappslab.mbchallenge.features.exchanges.R
 import com.fappslab.mbchallenge.libraries.design.extension.clickable
 import com.fappslab.mbchallenge.libraries.design.theme.PlutoTheme
 import com.fappslab.mbchallenge.libraries.design.theme.tokens.lightBlue
-import com.fappslab.mbchallenge.libraries.design.theme.tokens.lightPurple
-import com.fappslab.mbchallenge.libraries.design.theme.tokens.lightRed
 
 @Composable
 internal fun ExchangeItemComponent(
@@ -42,24 +46,43 @@ internal fun ExchangeItemComponent(
         ),
     ) {
         Column(
-            modifier = modifier.padding(PlutoTheme.dimen.dp16)
+            modifier = modifier.padding(PlutoTheme.dimen.dp8)
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(),
             ) {
-                Text(
-                    modifier = Modifier.weight(1f),
-                    maxLines = 1,
-                    text = exchange.name,
-                    overflow = TextOverflow.Ellipsis,
-                    style = PlutoTheme.typography.titleLarge,
-                )
-                Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
                 AsyncImage(
-                    modifier = Modifier.size(PlutoTheme.dimen.dp28),
-                    model = exchange.iconUrl,
+                    modifier = modifier
+                        .size(PlutoTheme.dimen.dp32)
+                        .clip(RoundedCornerShape(PlutoTheme.radius.small)),
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(exchange.iconUrl)
+                        .crossfade(true)
+                        .build(),
+                    contentScale = ContentScale.Crop,
+                    placeholder = painterResource(R.drawable.illu_placeholder),
+                    error = painterResource(R.drawable.illu_placeholder),
                     contentDescription = null,
                 )
+                Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
+                Column(
+                    modifier = Modifier.weight(1f),
+                ) {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        maxLines = 1,
+                        text = exchange.name,
+                        overflow = TextOverflow.Ellipsis,
+                        style = PlutoTheme.typography.titleMedium,
+                    )
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        maxLines = 1,
+                        text = "ID: ${exchange.exchangeId}",
+                        overflow = TextOverflow.Ellipsis,
+                        style = PlutoTheme.typography.labelSmall,
+                    )
+                }
             }
             Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
             Text(
@@ -67,55 +90,26 @@ internal fun ExchangeItemComponent(
                 style = PlutoTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.secondary
             )
-            Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
-            Column {
-                VolumeBar(
-                    label = "1hr",
-                    value = exchange.volume1hrsUsd,
-                    color = lightBlue
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "1hr",
+                    style = PlutoTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.outline
                 )
-                Spacer(modifier = Modifier.height(PlutoTheme.dimen.dp8))
-                VolumeBar(
-                    label = "1day",
-                    value = exchange.volume1dayUsd,
-                    color = lightRed
-                )
-                Spacer(modifier = Modifier.height(PlutoTheme.dimen.dp8))
-                VolumeBar(
-                    label = "1mth",
-                    value = exchange.volume1mthUsd,
-                    color = lightPurple
+                Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
+                Text(
+                    modifier = Modifier
+                        .padding(horizontal = PlutoTheme.dimen.dp4)
+                        .background(color = lightBlue, shape = MaterialTheme.shapes.small)
+                        .padding(horizontal = PlutoTheme.dimen.dp8),
+                    text = exchange.volume1hrsUsd,
+                    style = PlutoTheme.typography.labelSmall,
+                    color = Color.White
                 )
             }
         }
-    }
-}
-
-@Composable
-private fun VolumeBar(
-    label: String,
-    value: String,
-    color: Color
-) {
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = label,
-            style = PlutoTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.outline
-        )
-        Spacer(modifier = Modifier.size(PlutoTheme.dimen.dp8))
-        Text(
-            modifier = Modifier
-                .padding(horizontal = PlutoTheme.dimen.dp4)
-                .background(color = color, shape = MaterialTheme.shapes.small)
-                .padding(horizontal = PlutoTheme.dimen.dp8),
-            text = value,
-            style = PlutoTheme.typography.labelSmall,
-            color = Color.White
-        )
     }
 }
 
