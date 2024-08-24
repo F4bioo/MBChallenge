@@ -25,6 +25,7 @@ dependencies {
 
     // TestLibs
     testImplementation(testFixtures(project(Modules.testing)))
+    androidTestImplementation(testFixtures(project(Modules.testing)))
     testImplementation(libs.okhttp)
     testImplementation(libs.logging.interceptor)
 }
