@@ -11,7 +11,6 @@ internal object DetailsModuleLoad : KoinLoad() {
 
     override val presentationModule: Module = module {
         viewModel { (exchangeId: String) ->
-            println("<L> exchangeId: $exchangeId")
             DetailsViewModel(
                 exchangeId = exchangeId,
                 selectExchangeUseCase = SelectExchangeUseCase(repository = get())

@@ -30,12 +30,14 @@ import org.koin.core.parameter.parametersOf
 internal const val WEBSITE_CLICKED_TEST_TAG = "WEBSITE_CLICKED_TEST_TAG"
 internal const val ON_BACK_CLICKED_TEST_TAG = "ON_BACK_CLICKED_TEST_TAG"
 
+
 @Composable
 internal fun DetailsScreen(
     exchangeId: String,
-    viewModel: DetailsViewModel = koinViewModel { parametersOf(exchangeId) }
+    vm: DetailsViewModel? = null
 ) {
     KoinLazyModuleInitializer(DetailsModuleLoad)
+    val viewModel = vm ?: koinViewModel { parametersOf(exchangeId) }
     val state by viewModel.state.collectAsState()
     DetailsObserve(viewModel)
 

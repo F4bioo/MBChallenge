@@ -36,7 +36,7 @@ internal class DetailsScreenKtTest : KoinTestBase() {
         CompositionLocalProvider(LocalNavController provides navController) {
             DetailsScreen(
                 exchangeId = "BINANCE",
-                viewModel = it
+                vm = it
             )
         }
     }

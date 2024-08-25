@@ -33,13 +33,13 @@ internal const val EMPTY_SCREE_ILLU_TEST_TAG = "EMPTY_SCREE_ILLU_TEST_TAG"
 internal const val EMPTY_SCREE_TRY_AGAIN_TEST_TAG = "EMPTY_SCREE_TRY_AGAIN_TEST_TAG"
 internal const val EXCHANGES_ITEM_TEST_TAG = "EXCHANGES_ITEM_TEST_TAG"
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ExchangesScreen(
-    viewModel: ExchangesViewModel = koinViewModel()
+    vm: ExchangesViewModel? = null
 ) {
     KoinLazyModuleInitializer(ExchangesModuleLoad)
+    val viewModel = vm ?: koinViewModel()
     val state by viewModel.state.collectAsState()
     ExchangesObserve(viewModel)
 

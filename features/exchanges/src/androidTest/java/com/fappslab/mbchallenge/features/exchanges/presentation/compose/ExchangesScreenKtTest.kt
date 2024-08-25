@@ -66,7 +66,7 @@ internal class ExchangesScreenKtTest : KoinTestBase() {
     private fun Subject() {
         CompositionLocalProvider(LocalNavController provides navController) {
             ExchangesScreen(
-                viewModel = fakeViewModel
+                vm = fakeViewModel
             )
         }
     }
