@@ -19,7 +19,7 @@ internal class DetailsScreenRobotArrange(
     override val subject: @Composable (viewModel: DetailsViewModel) -> Unit
 ) : RobotArrange<DetailsScreenRobotAction, DetailsViewModel> {
 
-    private val fakeState = MutableStateFlow(DetailsViewState(exchangeId = "BINANCE"))
+    private val fakeState = MutableStateFlow(DetailsViewState(exchangeId = "MERCADOBITCOIN"))
     private val fakeEffect = MutableSharedFlow<DetailsViewEffect>()
     override val fakeViewModel = mockk<DetailsViewModel>(relaxed = true) {
         every { state } returns fakeState

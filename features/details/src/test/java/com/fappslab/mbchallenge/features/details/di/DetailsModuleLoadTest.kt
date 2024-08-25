@@ -21,7 +21,7 @@ internal class DetailsModuleLoadTest : KoinModuleTest(DetailsModuleLoad) {
 
     @Test
     fun `checkModules Should Koin provides dependencies When invoke DetailsModuleLoad`() {
-        val exchangeId = "BINANCE"
+        val exchangeId = "MERCADOBITCOIN"
         checkModules { withParameters<DetailsViewModel> { parametersOf(exchangeId) } }
     }
 }

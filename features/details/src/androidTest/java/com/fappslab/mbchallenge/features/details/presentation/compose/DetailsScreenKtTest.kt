@@ -35,7 +35,7 @@ internal class DetailsScreenKtTest : KoinTestBase() {
     private val robotScreen = DetailsScreenRobotArrange(createComposeRule) {
         CompositionLocalProvider(LocalNavController provides navController) {
             DetailsScreen(
-                exchangeId = "BINANCE",
+                exchangeId = "MERCADOBITCOIN",
                 vm = it
             )
         }

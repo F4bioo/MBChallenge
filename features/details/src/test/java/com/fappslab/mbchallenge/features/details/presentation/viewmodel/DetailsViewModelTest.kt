@@ -24,7 +24,7 @@ internal class DetailsViewModelTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    private val exchangeId = "BINANCE"
+    private val exchangeId = "MERCADOBITCOIN"
     private val initialState = DetailsViewState(exchangeId)
     private val selectExchangeUseCase = mockk<SelectExchangeUseCase>(relaxed = true)
     private lateinit var subject: DetailsViewModel
@@ -66,7 +66,7 @@ internal class DetailsViewModelTest {
     fun `When onViewIntent is invoked with OnNavigateToWebsite Then should expose expected effect`() =
         runTest {
             // Given
-            val url = "https://www.binance.com/"
+            val url = "https://www.mercadobitcoin.com.br/"
             val expectedEffect = DetailsViewEffect.NavigateToWebsite(url)
 
             // When

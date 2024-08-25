@@ -19,7 +19,7 @@ internal class SelectExchangeUseCaseTest {
     fun `When selectExchange is invoked Then should return success`() =
         runTest {
             // Given
-            val exchangeId = "BINANCE"
+            val exchangeId = "MERCADOBITCOIN"
             val expectedExchange = exchangeStub()
             coEvery { repository.selectExchange(exchangeId) } returns expectedExchange
 
@@ -35,7 +35,7 @@ internal class SelectExchangeUseCaseTest {
     fun `When selectExchange is invoked Then should return failure`() =
         runTest {
             // Given
-            val exchangeId = "BINANCE"
+            val exchangeId = "MERCADOBITCOIN"
             val expectedMessage = "Test exception"
             val cause = Throwable(expectedMessage)
             coEvery { repository.selectExchange(exchangeId) } throws cause

@@ -4,4 +4,4 @@ fun emptyString() = ""
 
 fun blankString() = " "
 
-fun String?.orDash(): String = this ?: "-"
+fun String?.orDash(): String = this ?: "---"

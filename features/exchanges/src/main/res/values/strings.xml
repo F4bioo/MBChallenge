@@ -2,4 +2,5 @@
 <resources>
     <string name="exchange_empty_screen">No exchanges available at the moment.</string>
     <string name="exchanges">Exchanges</string>
+    <string name="editors_choice">Editor\'s Choice</string>
 </resources>

@@ -44,7 +44,7 @@ internal class ExchangesRepositoryImplIntegrationTest {
     fun `When getExchanges is invoked Then should return success response`() = runTest {
         // Given
         val expectedSize = 2
-        val expectedExchangeId = "BINANCE"
+        val expectedExchangeId = "MERCADOBITCOIN"
         remoteTestRule.enqueueResponse(SUCCESS_EXCHANGE_RESPONSE.readJsonFile(), code = 200)
         remoteTestRule.enqueueResponse(SUCCESS_ICONS_RESPONSE.readJsonFile(), code = 200)
 

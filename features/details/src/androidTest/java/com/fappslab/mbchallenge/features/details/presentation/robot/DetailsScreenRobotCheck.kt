@@ -9,16 +9,16 @@ internal class DetailsScreenRobotCheck(
 ) : RobotCheck {
 
     fun checkIfHasExactlyInfoGroupTexts() {
-        createComposeRule.onNodeWithText("Binance").assertExists()
-        createComposeRule.onNodeWithText("ID: BINANCE").assertExists()
-        createComposeRule.onNodeWithText("246,0M").assertExists()
-        createComposeRule.onNodeWithText("6,1B").assertExists()
-        createComposeRule.onNodeWithText("333,8B").assertExists()
+        createComposeRule.onNodeWithText("Mercado Bitcoin").assertExists()
+        createComposeRule.onNodeWithText("ID: MERCADOBITCOIN").assertExists()
+        createComposeRule.onNodeWithText("228.67").assertExists()
+        createComposeRule.onNodeWithText("829.7K").assertExists()
+        createComposeRule.onNodeWithText("192.7M").assertExists()
     }
 
     fun checkIfHasExactlyWebsiteButtonText() {
         createComposeRule.onNodeWithText("Website").assertExists()
-        createComposeRule.onNodeWithText("https://www.binance.com/").assertExists()
+        createComposeRule.onNodeWithText("https://www.mercadobitcoin.com.br/").assertExists()
     }
 
     fun checkIfHasExactlyButtonText() {

@@ -9,10 +9,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -54,13 +54,13 @@ internal fun ExchangesContent(
             modifier = Modifier.testTag(LOADING_INDICATOR_TEST_TAG),
             shouldShow = state.shouldShowLoading
         )
-        LazyVerticalGrid(
+        LazyVerticalStaggeredGrid(
             modifier = Modifier.padding(PlutoTheme.dimen.dp8),
-            columns = GridCells.Adaptive(minSize = PlutoTheme.dimen.dp160),
+            columns = StaggeredGridCells.Fixed(count = 2),
+            verticalItemSpacing = PlutoTheme.dimen.dp8,
             horizontalArrangement = Arrangement.spacedBy(PlutoTheme.dimen.dp8),
-            verticalArrangement = Arrangement.spacedBy(PlutoTheme.dimen.dp8)
         ) {
-            item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+            item(span = StaggeredGridItemSpan.FullLine) {
                 CardTopBar(modifier = Modifier.fillMaxWidth())
             }
             items(state.exchanges) { exchange ->
@@ -152,20 +152,21 @@ private fun ErrorModal(
 @Composable
 private fun ExchangesContentPreview() {
     val exchange = Exchange(
-        exchangeId = "BINANCE",
-        website = "https://www.binance.com/",
-        name = "Binance",
-        dataQuoteStart = "18/12/17 00:00",
-        dataQuoteEnd = "20/08/24 00:00",
-        dataOrderBookStart = "18/12/17 21:50",
-        dataOrderBookEnd = "07/07/23 00:00",
-        dataTradeStart = "14/07/17 00:00",
-        dataTradeEnd = "21/08/24 00:00",
-        dataSymbolsCount = "2731",
-        volume1hrsUsd = "246,0M",
-        volume1dayUsd = "6,1B",
-        volume1mthUsd = "333,8B",
-        iconUrl = "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_64/74eaad903814407ebdfc3828fe5318ba.png"
+        exchangeId = "MERCADOBITCOIN",
+        website = "https://www.mercadobitcoin.com.br/",
+        name = "Mercado Bitcoin",
+        dataQuoteStart = "15/03/17 00:00",
+        dataQuoteEnd = "24/08/24 00:00",
+        dataOrderBookStart = "14/03/17 20:05",
+        dataOrderBookEnd = "06/07/23 00:00",
+        dataTradeStart = "07/03/17 00:00",
+        dataTradeEnd = "24/08/24 00:00",
+        dataSymbolsCount = "462",
+        volume1hrsUsd = "228.67",
+        volume1dayUsd = "829.7K",
+        volume1mthUsd = "192.7M",
+        iconUrl = "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_64/5fbfbd742fb64c67a3963ebd7265f9f3.png",
+        isEditorChoice = true
     )
     val state = ExchangesViewState(
         shouldShowLoading = false,

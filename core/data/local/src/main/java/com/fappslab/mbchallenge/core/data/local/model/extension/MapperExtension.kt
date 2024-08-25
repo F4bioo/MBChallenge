@@ -18,7 +18,8 @@ internal fun ExchangeEntity.toExchange(): Exchange {
         volume1hrsUsd = volume1hrsUsd,
         volume1dayUsd = volume1dayUsd,
         volume1mthUsd = volume1mthUsd,
-        iconUrl = iconUrl
+        iconUrl = iconUrl,
+        isEditorChoice = isEditorsChoice
     )
 }
 
@@ -37,7 +38,8 @@ internal fun Exchange.toExchangeEntity(): ExchangeEntity {
         volume1hrsUsd = volume1hrsUsd,
         volume1dayUsd = volume1dayUsd,
         volume1mthUsd = volume1mthUsd,
-        iconUrl = iconUrl
+        iconUrl = iconUrl,
+        isEditorsChoice = isEditorChoice
     )
 }
 

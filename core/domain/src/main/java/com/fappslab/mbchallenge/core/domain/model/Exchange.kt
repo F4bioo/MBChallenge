@@ -15,4 +15,5 @@ data class Exchange(
     val volume1dayUsd: String,
     val volume1mthUsd: String,
     val iconUrl: String,
+    val isEditorChoice: Boolean
 )

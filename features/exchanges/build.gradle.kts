@@ -23,6 +23,7 @@ dependencies {
     implementation(project(Modules.design))
 
     // Libs
+    implementation(libs.compose.shimmer)
 
     // TestLibs
     testImplementation(testFixtures(project(Modules.testing)))

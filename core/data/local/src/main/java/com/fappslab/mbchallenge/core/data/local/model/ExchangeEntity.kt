@@ -35,4 +35,6 @@ internal data class ExchangeEntity(
     val volume1mthUsd: String,
     @ColumnInfo("icon_url")
     val iconUrl: String,
+    @ColumnInfo("is_editors_choice")
+    val isEditorsChoice: Boolean
 )

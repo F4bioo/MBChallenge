@@ -17,7 +17,7 @@ plugins {
     alias(libs.plugins.androidx.room) apply false
     alias(libs.plugins.kotlin.ksp) apply false
     alias(libs.plugins.secrets.gradle.plugin) apply false
-    id("com.vanniktech.dependency.graph.generator") version "0.7.0"
+    alias(libs.plugins.graph.generator) apply false
 }
 
 configure<DependencyGraphGeneratorExtension> {

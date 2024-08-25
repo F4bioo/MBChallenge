@@ -43,7 +43,7 @@ internal class LocalRepositoryImplIntegrationTest {
     @Test
     fun when_selectExchange_is_invoked_THen_should_return_exchange() = runTest {
         // Given
-        val exchangeId = "BINANCE"
+        val exchangeId = "MERCADOBITCOIN"
         val exchanges = exchangesStub()
         val exchangeEntity = exchangeStub()
         dao.insertAllExchanges(exchanges.toExchangeListEntity())

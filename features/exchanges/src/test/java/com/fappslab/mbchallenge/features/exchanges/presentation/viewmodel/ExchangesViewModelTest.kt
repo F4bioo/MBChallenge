@@ -70,7 +70,7 @@ internal class ExchangesViewModelTest {
     fun `When onViewIntent is invoked with OnExchangeClicked Then should expose expected state`() =
         runTest {
             // Given
-            val exchangeId = "BINANCE"
+            val exchangeId = "MERCADOBITCOIN"
             val expectedEffect = ExchangesViewEffect.NavigateToDetails(exchangeId)
 
             // When

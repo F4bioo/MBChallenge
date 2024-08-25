@@ -21,7 +21,7 @@ internal class DetailsModuleLoadTest2 : KoinTest {
 
     @Test
     fun `should check Koin modules with correct parameter type`() {
-        val exchangeId = "BINANCE"
+        val exchangeId = "MERCADOBITCOIN"
 
         val mockedModules = module {
             factory<MBChallengeRepository> { mockk(relaxed = true) }
