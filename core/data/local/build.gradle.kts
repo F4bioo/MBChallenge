@@ -36,6 +36,7 @@ dependencies {
     ksp(libs.room.compiler)
 
     // TestLibs
+    testImplementation(testFixtures(project(Modules.testing)))
     androidTestImplementation(testFixtures(project(Modules.testing)))
 }
 ksp {
