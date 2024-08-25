@@ -71,7 +71,7 @@ By following these steps, you ensure that the project builds successfully in all
 
 - [Modularization](https://developer.android.com/topic/modularization)
 
-<img src="images/graphviz.svg" width="70%"/>
+<img src="images/graphviz.svg" width="100%"/>
 
 ### Testing (Unit, Integration, Instrumentation)
 
