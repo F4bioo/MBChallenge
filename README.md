@@ -4,6 +4,10 @@
 
 This project involves creating an application to query exchanges using the [CoinAPI.io](https://www.coinapi.io/). The app lists available exchanges and provides specific details about each, such as name, ID, and trading volume.
 
+## Screens
+
+<img src="images/mp_challenge_screens.png" width="90%"/>
+
 ## Features
 
 - **List Screen**: Displays a list of exchanges with the following information:
