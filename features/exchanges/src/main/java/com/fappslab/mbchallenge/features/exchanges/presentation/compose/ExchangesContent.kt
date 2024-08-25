@@ -3,22 +3,34 @@ package com.fappslab.mbchallenge.features.exchanges.presentation.compose
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.fappslab.mbchallenge.core.data.remote.model.ErrorType
 import com.fappslab.mbchallenge.core.domain.model.Exchange
 import com.fappslab.mbchallenge.features.exchanges.R
 import com.fappslab.mbchallenge.features.exchanges.presentation.compose.component.ExchangeEmptyScreenComponent
+import com.fappslab.mbchallenge.features.exchanges.presentation.compose.component.ExchangeHorizontalLoadingIndicator
 import com.fappslab.mbchallenge.features.exchanges.presentation.compose.component.ExchangeItemComponent
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewIntent
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewState
@@ -38,12 +50,19 @@ internal fun ExchangesContent(
     Box(
         modifier = modifier.fillMaxSize()
     ) {
+        ExchangeHorizontalLoadingIndicator(
+            modifier = Modifier.testTag(LOADING_INDICATOR_TEST_TAG),
+            shouldShow = state.shouldShowLoading
+        )
         LazyVerticalGrid(
             modifier = Modifier.padding(PlutoTheme.dimen.dp8),
             columns = GridCells.Adaptive(minSize = PlutoTheme.dimen.dp160),
             horizontalArrangement = Arrangement.spacedBy(PlutoTheme.dimen.dp8),
             verticalArrangement = Arrangement.spacedBy(PlutoTheme.dimen.dp8)
         ) {
+            item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+                CardTopBar(modifier = Modifier.fillMaxWidth())
+            }
             items(state.exchanges) { exchange ->
                 ExchangeItemComponent(
                     exchange = exchange,
@@ -60,6 +79,36 @@ internal fun ExchangesContent(
             errorType = state.errorType,
             intent = intent
         )
+    }
+}
+
+@Composable
+internal fun CardTopBar(
+    modifier: Modifier = Modifier,
+) {
+
+    Card(
+        modifier = modifier
+            .testTag(TOP_BAR_TEST_TAG)
+            .statusBarsPadding(),
+        shape = RoundedCornerShape(PlutoTheme.radius.medium),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            contentColor = MaterialTheme.colorScheme.onSurface
+        ),
+    ) {
+        Column(
+            modifier = Modifier.padding(PlutoTheme.dimen.dp16)
+        ) {
+            Text(
+                text = stringResource(R.string.app_name),
+                style = PlutoTheme.typography.titleLarge,
+            )
+            Text(
+                text = stringResource(R.string.exchanges),
+                style = PlutoTheme.typography.bodyMedium,
+            )
+        }
     }
 }
 
@@ -119,6 +168,7 @@ private fun ExchangesContentPreview() {
         iconUrl = "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_64/74eaad903814407ebdfc3828fe5318ba.png"
     )
     val state = ExchangesViewState(
+        shouldShowLoading = false,
         shouldShowError = false,
         exchanges = List(5) { exchange }
     )

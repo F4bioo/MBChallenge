@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.Surface
+import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.fappslab.mbchallenge.libraries.arch.di.FEATURE_ROUTES_QUALIFIER
 import com.fappslab.mbchallenge.libraries.arch.navigation.extension.NavHostControllerProvider
@@ -20,7 +21,10 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         enableEdgeToEdge()
         setContent {
-            PlutoTheme {
+            PlutoTheme(
+                statusBarColor = Color.Transparent,
+                navigationBarColor = Color.Transparent,
+            ) {
                 Surface {
                     NavHostControllerProvider { navController ->
                         MainNavGraph(

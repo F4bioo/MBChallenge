@@ -417,8 +417,8 @@ val unspecified_scheme = ColorFamily(
 fun PlutoTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    statusBarColor: Color = colorScheme.background.copy(PlutoOpacity.opaque),
-    navigationBarColor: Color = colorScheme.background.copy(PlutoOpacity.opaque),
+    statusBarColor: Color = colorScheme.onBackground.copy(PlutoOpacity.opaque),
+    navigationBarColor: Color = colorScheme.onBackground.copy(PlutoOpacity.opaque),
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
