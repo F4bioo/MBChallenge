@@ -14,9 +14,11 @@ captures/
 .cxx/
 *.apk
 output.json
+app/release
 
 # IntelliJ
 *.iml
+.idea
 .idea/
 misc.xml
 deploymentTargetDropDown.xml

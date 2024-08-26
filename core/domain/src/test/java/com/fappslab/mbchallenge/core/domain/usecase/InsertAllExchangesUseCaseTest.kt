@@ -40,8 +40,10 @@ internal class InsertAllExchangesUseCaseTest {
             val cause = Throwable(expectedMessage)
             coEvery { repository.insertAllExchanges(exchanges) } throws cause
 
-            // Then
+            // When
             val result = assertFailsWith<Throwable> { subject(exchanges) }
+
+            // Then
             assertEquals(expectedMessage, result.message)
             coVerify { repository.insertAllExchanges(exchanges) }
         }

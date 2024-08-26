@@ -27,16 +27,16 @@ This project involves creating an application to query exchanges using the [Coin
 
 ## API Credentials
 
-To use this app, you need an API key from [CoinAPI.io](https://www.coinapi.io/). This key is securely managed using the `secrets-gradle-plugin`. If the `secrets/apiKey.properties` file is missing, fallback values from `default.properties` will be used.
+To use this app, you need an API key from [CoinAPI.io](https://www.coinapi.io/). This key is securely managed using the **secrets-gradle-plugin**. If the **secrets/apiKey.properties** file is missing, fallback values from **default.properties** will be used.
 
 For more information and to obtain an API key, visit [here](https://www.coinapi.io/get-free-api-key?product_id=market-data-api).
 
 ## Setting Up the Project with Your CoinAPI Key
 
-1. **Ensure the `default.properties` File is Configured**:
-    - In the root directory of the project, ensure that there is a `default.properties` file with default values, including a placeholder for the [CoinAPI Key](https://www.coinapi.io/get-free-api-key?product_id=market-data-api).
+1. **Ensure the "default.properties" File is Configured**:
+    - In the root directory of the project, ensure that there is a **default.properties** file with default values, including a placeholder for the [CoinAPI Key](https://www.coinapi.io/get-free-api-key?product_id=market-data-api).
 
-   Example `default.properties`:
+   Example **default.properties**:
    ```properties
    COIN_API_KEY=*********************************
    ```
@@ -45,7 +45,7 @@ For more information and to obtain an API key, visit [here](https://www.coinapi.
    ```properties
    COIN_API_KEY=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
    ```
-    - The placeholder `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX` will be used during the build process if no real key is provided.
+    - The placeholder _XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX_ will be used during the compilation process, it is important that you add a real API key.
 
 ### Important Notes
 
@@ -71,7 +71,7 @@ By following these steps, you ensure that the project builds successfully in all
 
 - [Modularization](https://developer.android.com/topic/modularization)
 
-<img src="images/graphviz.svg" width="70%"/>
+<img src="images/graphviz.svg" width="100%"/>
 
 ### Testing (Unit, Integration, Instrumentation)
 
@@ -84,8 +84,8 @@ By following these steps, you ensure that the project builds successfully in all
 > **For this project**, I opted for an integrated testing approach in the data layer to avoid redundant unit tests for each implementation.
 > While unit tests are effective for the domain and presentation layers, they can become repetitive when testing data interactions.
 >
-> By adopting the Repository Pattern, I perform integrated tests that cover the entire data flow, from the data source (API or DAO) to the repository:
-> `RepositoryImpl -> DataSource -> Source API (remote) or DAO (local)`.
+> By adopting the Repository Pattern, I perform integrated tests that cover the entire data flow, from the data source (API or DAO) to the repository EG:
+> **Data layer**: RepositoryImpl -> DataSource -> Source API (remote) or Database DAO (local).
 > This ensures the correctness of the data flow by validating end-to-end data retrieval and error handling.
 > This approach reduces unnecessary tests and enhances system reliability by focusing on complete data flows rather than isolated components.
 
@@ -104,7 +104,7 @@ By following these steps, you ensure that the project builds successfully in all
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
 ### Design System
-The project includes a comprehensive in-house design system named **Pluto**, implemented within the `libraries/design` module. 
+The project includes a comprehensive in-house design system named **Pluto**, implemented within the _libraries/design_ module.
 **Pluto** centralizes all UI/UX design elements and components, ensuring a consistent and cohesive user experience throughout the application.
 
 ## Credits
