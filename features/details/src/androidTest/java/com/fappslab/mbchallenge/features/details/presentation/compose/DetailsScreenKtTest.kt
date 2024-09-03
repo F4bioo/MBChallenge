@@ -6,12 +6,14 @@ import androidx.navigation.NavHostController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.fappslab.mbchallenge.core.navigation.DetailsRoute
 import com.fappslab.mbchallenge.core.navigation.ExchangesNavigation
+import com.fappslab.mbchallenge.features.details.di.DetailsModuleLoad
+import com.fappslab.mbchallenge.features.details.di.DetailsModuleShot
 import com.fappslab.mbchallenge.features.details.presentation.robot.DetailsScreenRobotArrange
-import com.fappslab.mbchallenge.features.exchanges.presentation.setupkoin.KoinTestBase
 import com.fappslab.mbchallenge.libraries.arch.navigation.extension.LocalNavController
 import com.fappslab.mbchallenge.libraries.testing.robot.givenArrange
 import com.fappslab.mbchallenge.libraries.testing.robot.thenCheck
 import com.fappslab.mbchallenge.libraries.testing.robot.whenAction
+import com.fappslab.mbchallenge.libraries.testing.rules.KoinTestRule
 import io.mockk.clearAllMocks
 import io.mockk.mockk
 import io.mockk.verify
@@ -24,10 +26,15 @@ import org.koin.core.context.GlobalContext.loadKoinModules
 import org.koin.dsl.module
 
 @RunWith(AndroidJUnit4::class)
-internal class DetailsScreenKtTest : KoinTestBase() {
+internal class DetailsScreenKtTest {
 
     @get:Rule
     val createComposeRule = createComposeRule()
+
+    @get:Rule
+    val koinTestRule = KoinTestRule(
+        modules = DetailsModuleLoad.modules + DetailsModuleShot().modules
+    )
 
     private val navController = mockk<NavHostController>(relaxed = true)
     private val exchangesNavigation = mockk<ExchangesNavigation>(relaxed = true)

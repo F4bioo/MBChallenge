@@ -26,6 +26,7 @@ internal class LocalModuleShot : KoinShot() {
             get<DatabaseClient<MBChallengeDatabase>>().create().exchangesDao()
         }
 
+
         factory<MBChallengeRepository> {
             LocalRepositoryImpl(
                 dataSource = LocalDataSourceImpl(dao = get()),

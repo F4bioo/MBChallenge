@@ -4,19 +4,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onChild
+import androidx.compose.ui.test.onChildAt
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.navigation.NavHostController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.fappslab.mbchallenge.core.navigation.DetailsNavigation
 import com.fappslab.mbchallenge.core.navigation.DetailsRoute
-import com.fappslab.mbchallenge.features.exchanges.presentation.setupkoin.KoinTestBase
+import com.fappslab.mbchallenge.features.exchanges.di.ExchangesModuleLoad
+import com.fappslab.mbchallenge.features.exchanges.di.ExchangesModuleShot
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewEffect
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewIntent
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewModel
 import com.fappslab.mbchallenge.features.exchanges.presentation.viewmodel.ExchangesViewState
 import com.fappslab.mbchallenge.libraries.arch.navigation.extension.LocalNavController
+import com.fappslab.mbchallenge.libraries.testing.rules.KoinTestRule
 import com.fappslab.mbchallenge.libraries.testing.stub.exchangesStub
 import io.mockk.Runs
 import io.mockk.clearAllMocks
@@ -36,10 +38,15 @@ import org.koin.core.context.GlobalContext.loadKoinModules
 import org.koin.dsl.module
 
 @RunWith(AndroidJUnit4::class)
-internal class ExchangesScreenKtTest : KoinTestBase() {
+internal class ExchangesScreenKtTest {
 
     @get:Rule
     val createComposeRule = createComposeRule()
+
+    @get:Rule
+    val koinTestRule = KoinTestRule(
+        modules = ExchangesModuleLoad.modules + ExchangesModuleShot().modules
+    )
 
     private val initialState = ExchangesViewState()
     private val navController = mockk<NavHostController>(relaxed = true)
@@ -82,7 +89,7 @@ internal class ExchangesScreenKtTest : KoinTestBase() {
         // Then
         createComposeRule
             .onNodeWithTag(TOP_BAR_TEST_TAG)
-            .onChild()
+            .onChildAt(index = 1)
             .assertTextEquals(expectedTitle)
     }
 
